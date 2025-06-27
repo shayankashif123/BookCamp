@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect} from 'react';
 import { handlePurchase } from '../redux/purchaseSlice';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../Context/Spinner';
