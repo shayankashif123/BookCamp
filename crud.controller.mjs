@@ -63,18 +63,25 @@ const getBookByFeatured = async () => {
         return { message: err.message, success: false };
     }
 }
-const getAllBooks = async () => {
-    try {
-        const Books = await book.find().lean();
-        if (!Books) {
-            return { message: "Books not found", success: false };
-        }
-        return { message: "Books fetched successfully", success: true, data: Books };
-    }
-    catch (err) {
-        return { message: err.message, success: false };
-    }
-}
+const getAllBooks = async (page, limit) => {
+  try {
+    const skip = (page - 1) * limit;
+    const totalBooks = await book.countDocuments();
+
+    const books = await book.find().skip(skip).limit(limit).lean(); 
+
+    return {
+      success: true,
+      message: "Books fetched successfully",
+      data: books,                              
+      currentPage: page,
+      totalPages: Math.ceil(totalBooks / limit),
+      totalItems: totalBooks,
+    };
+  } catch (err) {
+    return { message: err.message, success: false };
+  }
+};
 const updateBookById = async (id, updatedBook) => {
     try {
         const Books = await book.findByIdAndUpdate(id, updatedBook, { new: true });
@@ -98,62 +105,62 @@ const deleteBookById = async (id) => {
         return { message: err.message, success: false };
     }
 }
-    const handlePurchase = async (id, quantity) => {
-        try {
+const handlePurchase = async (id, quantity) => {
+    try {
+        const updatedBook = await book.findOneAndUpdate(
+            { _id: id, quantity: { $gte: quantity } },
+            { $inc: { quantity: -quantity } },
+            { new: true }
+        );
+
+        if (!updatedBook) {
+            return { message: "Not enough quantity available or book not found", success: false };
+        }
+
+        return {
+            message: "Book purchased successfully",
+            success: true,
+            data: updatedBook,
+        };
+    } catch (err) {
+        return { message: err.message, success: false };
+    }
+};
+const handleMultiplePurchase = async (books) => {
+    try {
+        const results = [];
+
+        for (const item of books) {
+            const { _id, quantity, title } = item;
+
             const updatedBook = await book.findOneAndUpdate(
-                { _id: id, quantity: { $gte: quantity } },
-                { $inc: { quantity: -quantity } },     
-                { new: true }                           
+                { _id, quantity: { $gte: quantity } },
+                { $inc: { quantity: -quantity } },
+                { new: true }
             );
 
             if (!updatedBook) {
-                return { message: "Not enough quantity available or book not found", success: false };
+                results.push({
+                    success: false,
+                    message: `Not enough quantity available or book "${title}" not found`,
+                });
+            } else {
+                results.push({
+                    success: true,
+                    message: `Book "${title}" purchased successfully`,
+                    data: updatedBook,
+                });
             }
-
-            return {
-                message: "Book purchased successfully",
-                success: true,
-                data: updatedBook,
-            };
-        } catch (err) {
-            return { message: err.message, success: false };
         }
-    };
-  const handleMultiplePurchase = async (books) => {
-  try {
-    const results = [];
 
-    for (const item of books) {
-      const { _id, quantity, title } = item;
-
-      const updatedBook = await book.findOneAndUpdate(
-        { _id, quantity: { $gte: quantity } },
-        { $inc: { quantity: -quantity } },
-        { new: true }
-      );
-
-      if (!updatedBook) {
-        results.push({
-          success: false,
-          message: `Not enough quantity available or book "${title}" not found`,
-        });
-      } else {
-        results.push({
-          success: true,
-          message: `Book "${title}" purchased successfully`,
-          data: updatedBook,
-        });
-      }
+        return results;
+    } catch (err) {
+        return {
+            success: false,
+            message: err.message,
+            data: null,
+        };
     }
-
-    return results;
-  } catch (err) {
-    return {
-      success: false,
-      message: err.message,
-      data: null,
-    };
-  }
 };
 
-    export { addBook, getBookBySearch, getBookById, getAllBooks, getBookByCategory, getBookByFeatured, updateBookById, deleteBookById, handlePurchase, handleMultiplePurchase }
+export { addBook, getBookBySearch, getBookById, getAllBooks, getBookByCategory, getBookByFeatured, updateBookById, deleteBookById, handlePurchase, handleMultiplePurchase }
