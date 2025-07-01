@@ -80,7 +80,9 @@ app.get("/featured",async(req,res)=>{
 })
 app.get("/books",async(req,res)=>{
     try{
-        const books= await getAllBooks();
+        const page = parseInt(req.query.page)||1;
+        const limit = 10;
+        const books= await getAllBooks(page,limit);
         if (!books) {
             return res.status(400).json({message:"Books not found",success:false});
         }
