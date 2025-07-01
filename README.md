@@ -1,74 +1,72 @@
-📚 BookCamp – Online Book Store
-BookCamp is a full-stack online bookstore built with React, Redux, Node.js, Express.js, and MongoDB. It offers a seamless and responsive user experience, enabling users to browse, search, and purchase books by category using a guest checkout flow. The backend efficiently stores buyer data and dynamically updates book inventory based on purchases.
+# 📚 BookCamp – Online Book Store
 
-🚀 Tech Stack
-Frontend
-⚛️ React.js
+**BookCamp** is a full-stack online bookstore built with **React**, **Redux**, **Node.js**, **Express.js**, and **MongoDB**. It offers a seamless and responsive user experience, enabling users to **browse, search, and purchase books by category** using a **guest checkout flow**. The backend efficiently stores buyer data and dynamically updates book inventory based on purchases.
 
-📦 Redux (for state management)
+---
 
-💨 Tailwind CSS (for styling)
+## 🚀 Tech Stack
 
-Backend
-🌐 Node.js
+### Frontend
+- ⚛️ **React.js**
+- 📦 **Redux** (for state management)
+- 💨 **Tailwind CSS** (for styling)
 
-🚂 Express.js
+### Backend
+- 🌐 **Node.js**
+- 🚂 **Express.js**
+- 🗂 **MongoDB & Mongoose**
 
-🗂 MongoDB & Mongoose
+---
 
-🌟 Key Features
-📚 Browse Books by Category
-Users can explore books organized into categories like Fiction, Non-Fiction, Technology, etc.
+## 🌟 Key Features
 
-🔍 Search Functionality
-Real-time search to find books by title or keyword.
+- 📚 **Browse Books by Category**  
+  Explore books organized into categories like Fiction, Non-Fiction, Technology, etc.
 
-🔢 Pagination Support
-Handles large data efficiently by splitting book listings into pages:
+- 🔍 **Search Functionality**  
+  Real-time search to find books by title or keyword.
 
-Loads only 10 books per page
+- 🔢 **Pagination Support**  
+  Efficiently handles large data sets by splitting listings into pages:
+  - Loads only **10 books per page**
+  - Uses **query parameters** (e.g. `?page=3`) for navigation
+  - Maintains current page when navigating back from book detail view
+  - Improves performance and user experience
 
-Uses query parameters (e.g. ?page=3) for dynamic navigation
+- 🏷️ **Featured Books Section**  
+  Highlights top picks and popular books on the homepage.
 
-Maintains current page when navigating back from a book detail
+- 🛒 **Add to Cart**  
+  Easily add and manage items in the cart before purchasing.
 
-Enhances performance and user experience with smooth page transitions
+- 💸 **Buy Now Functionality**  
+  Instantly purchase books without using the cart.
 
-🏷️ Featured Books Section
-Highlights top picks and popular books on the homepage.
+- 👤 **Guest Checkout**  
+  No login required — buyers can checkout as guests.
 
-🛒 Add to Cart
-Easily add and manage items in the cart before purchasing.
+- 📦 **Purchase Handling**  
+  Stores complete buyer info in the database:
+  - Name, Email, Address, Contact, and Purchase Date
+  - Book details (title, quantity, total price, and payment method)
 
-💸 Buy Now Functionality
-Allows users to directly purchase books without going through the cart.
+- 📉 **Dynamic Inventory Management**  
+  Automatically reduces book quantity after a successful purchase.
 
-👤 Guest Checkout
-No login required — buyers can checkout as guests.
+- 🧾 **Order Summary**  
+  Displays total amount, selected payment method, and purchased books.
 
-📦 Purchase Handling
-Stores complete buyer information in the database:
+- 💳 **Cash on Delivery (COD)**  
+  Default payment method for all purchases.
 
-Name, Email, Address, Contact, and Purchase Date
+- 💻 **Responsive & Intuitive UI**  
+  Clean, modern interface optimized for all devices.
 
-Book details (title, quantity, total price, and payment method)
+---
 
-📉 Dynamic Inventory Management
-Automatically reduces book quantity upon successful purchase.
+## 🧠 Sample Buyer Data (MongoDB Schema)
 
-🧾 Order Summary
-Displays total amount, selected payment method, and purchased books.
-
-💳 Cash on Delivery (COD)
-Default payment method for all purchases.
-
-💻 Responsive & Intuitive UI
-Clean, modern interface optimized for all devices.
-
-🧠 Sample Buyer Data (MongoDB Schema)
-json
-Copy
-Edit
+```json
 {
   "_id": "67f9445488842994ddacbc43",
   "FirstName": "kashif",
