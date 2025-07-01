@@ -1,65 +1,74 @@
-# 📚 BookCamp – Online Book Store
+📚 BookCamp – Online Book Store
+BookCamp is a full-stack online bookstore built with React, Redux, Node.js, Express.js, and MongoDB. It offers a seamless and responsive user experience, enabling users to browse, search, and purchase books by category using a guest checkout flow. The backend efficiently stores buyer data and dynamically updates book inventory based on purchases.
 
-BookCamp is a full-stack online bookstore built with **React**, **Redux**, **Node.js**, **Express.js**, and **MongoDB**. It offers a seamless and responsive user experience, enabling users to **browse, search, and purchase books by category** using a **guest checkout flow**. The backend efficiently stores buyer data and dynamically updates book inventory based on purchases.
+🚀 Tech Stack
+Frontend
+⚛️ React.js
 
----
+📦 Redux (for state management)
 
-## 🚀 Tech Stack
+💨 Tailwind CSS (for styling)
 
-### Frontend
-- ⚛️ React.js  
-- 📦 Redux (for state management)  
-- 💨 Tailwind CSS (for styling)
+Backend
+🌐 Node.js
 
-### Backend
-- 🌐 Node.js  
-- 🚂 Express.js  
-- 🗂 MongoDB & Mongoose
+🚂 Express.js
 
----
+🗂 MongoDB & Mongoose
 
-## 🌟 Key Features
+🌟 Key Features
+📚 Browse Books by Category
+Users can explore books organized into categories like Fiction, Non-Fiction, Technology, etc.
 
-- 📚 **Browse Books by Category**  
-  Users can explore books organized into categories like Fiction, Non-Fiction, Technology, etc.
+🔍 Search Functionality
+Real-time search to find books by title or keyword.
 
-- 🔍 **Search Functionality**  
-  Real-time search to find books by title or keyword.
+🔢 Pagination Support
+Handles large data efficiently by splitting book listings into pages:
 
-- 🏷️ **Featured Books Section**  
-  Highlights top picks and popular books on the homepage.
+Loads only 10 books per page
 
-- 🛒 **Add to Cart**  
-  Easily add and manage items in the cart before purchasing.
+Uses query parameters (e.g. ?page=3) for dynamic navigation
 
-- 💸 **Buy Now Functionality**  
-  Allows users to directly purchase books without going through the cart.
+Maintains current page when navigating back from a book detail
 
-- 👤 **Guest Checkout**  
-  No login required — buyers can checkout as guests.
+Enhances performance and user experience with smooth page transitions
 
-- 📦 **Purchase Handling**  
-  Stores complete buyer information in the database:
-  - Name, Email, Address, Contact, and Purchase Date
-  - Book details (title, quantity, total price, and payment method)
+🏷️ Featured Books Section
+Highlights top picks and popular books on the homepage.
 
-- 📉 **Dynamic Inventory Management**  
-  Automatically reduces book quantity upon successful purchase.
+🛒 Add to Cart
+Easily add and manage items in the cart before purchasing.
 
-- 🧾 **Order Summary**  
-  Displays total amount, selected payment method, and purchased books.
+💸 Buy Now Functionality
+Allows users to directly purchase books without going through the cart.
 
-- 💳 **Cash on Delivery (COD)**  
-  Default payment method for all purchases.
+👤 Guest Checkout
+No login required — buyers can checkout as guests.
 
-- 💻 **Responsive & Intuitive UI**  
-  Clean, modern interface optimized for all devices.
+📦 Purchase Handling
+Stores complete buyer information in the database:
 
----
+Name, Email, Address, Contact, and Purchase Date
 
-## 🧠 Sample Buyer Data (MongoDB Schema)
+Book details (title, quantity, total price, and payment method)
 
-```json
+📉 Dynamic Inventory Management
+Automatically reduces book quantity upon successful purchase.
+
+🧾 Order Summary
+Displays total amount, selected payment method, and purchased books.
+
+💳 Cash on Delivery (COD)
+Default payment method for all purchases.
+
+💻 Responsive & Intuitive UI
+Clean, modern interface optimized for all devices.
+
+🧠 Sample Buyer Data (MongoDB Schema)
+json
+Copy
+Edit
 {
   "_id": "67f9445488842994ddacbc43",
   "FirstName": "kashif",
