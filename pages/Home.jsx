@@ -5,6 +5,8 @@ import { addToCart } from '../redux/cartSlice';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchData } from '../redux/bookSlice';
 import Spinner from '../Context/Spinner';
+import { ToastContainer } from 'react-toastify';
+import { showItemAddedToast } from '../utils/toast';
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,6 +34,7 @@ const Home = () => {
   const handleAddToCart = (book, e) => {
     e.stopPropagation();
     dispatch(addToCart(book));
+      showItemAddedToast();
   }
   const handlePageChange = (newPage) => {
     setPage(newPage);
@@ -46,6 +49,7 @@ const Home = () => {
         if (isMounted) {
           setBook(response.data.data.data);
           setTotalPage(response.data.data.totalPages)
+           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       } catch (err) {
         console.log(`Error in fetching data ${err}`);
@@ -66,6 +70,7 @@ const Home = () => {
 
   return (
     <div>
+       <ToastContainer />
       <div className="container mx-auto px-3 py-5">
         {loading && <Spinner />}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
